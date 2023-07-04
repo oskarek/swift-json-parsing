@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: ${{ matrix.os }} (Swift ${{ matrix.swift }}, ${{ matrix.config }})
+    strategy:
+      matrix:
+        os: [macos-latest]
+        swift: ["5.8"]
+        config: ["debug", "release"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: swift-actions/setup-swift@v1
+        with:
+          swift-version: ${{ matrix.swift }}
+      - uses: actions/checkout@v3
+      - name: Build
+        run: swift build -c ${{ matrix.config }}
+      - name: Run tests
+        run: swift test -c ${{ matrix.config }}
