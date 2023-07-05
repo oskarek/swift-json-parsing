@@ -1,6 +1,8 @@
 # JSONParsing
 
 [![CI](https://github.com/oskarek/swift-json-parsing/actions/workflows/ci.yml/badge.svg)](https://github.com/oskarek/swift-json-parsing/actions/workflows/ci.yml)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Foskarek%2Fswift-json-parsing%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/oskarek/swift-json-parsing)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Foskarek%2Fswift-json-parsing%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/oskarek/swift-json-parsing)
 
 A library for decoding and encoding json, built on top of @pointfreeco's [Parsing](https://github.com/pointfreeco/swift-parsing) library.
 
