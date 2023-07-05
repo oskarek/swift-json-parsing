@@ -873,7 +873,6 @@ let dictionary = try JSONObject {
 print(dictionary)
 // ["url1": https://www.example.com/1, "url3": https://www.example.com/3, "url2": https://www.example.com/2]
 
-let urlDictionary
 try JSONObject {
   URL.jsonParser()
 }.print(dictionary)
@@ -883,12 +882,10 @@ try JSONObject {
 But you can also specify custom parsing of the _keys_ into any `Hashable` type, by adding on a `keys` parser parameter:
 
 ```swift
-let objectJson = """
-{
+let objectJson: JSONValue = [
   "key_1": "Steve Jobs",
   "key_2": "Tim Cook"
-}
-"""
+]
 
 let dictionary = try JSONObject {
   String.jsonParser()
