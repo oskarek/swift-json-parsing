@@ -4,7 +4,7 @@ import Parsing
 /// A parser that, like the ``Field`` parser, tries to parse off a single field from a json object.
 /// But unlike the `Field` parser, it allows for the field to _not exists_, in which case it just
 /// returns `nil` or a `default` value if one is provided. Just like the `Field` parser it will,
-/// if succesful, remove the field (if existent) from the input json.
+/// if successful, remove the field (if existent) from the input json.
 ///
 /// **Note: the `OptionalField` parser treats a field with an explicit `null` value as non-existent.**
 ///

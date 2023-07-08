@@ -27,7 +27,7 @@ A library for decoding and encoding json, built on top of @pointfreeco's [Parsin
 
 ## Introduction
 
-As mentioned above, this library is built using the [Parsing](https://github.com/pointfreeco/swift-parsing) library, which is a library that provides a consistent story for writing _parsing_ code in Swift, that is, code that turns some _unstructured data_ into more _structured data_. You do that by constructing _parsers_ that are generic over both the (unstructured) _input_ and the (structued) _output_. What's really great is the fact the these parsers can be made _invertible_ (or bidirectional), meaning thay can also turn structured data _back_ into unstructed data, referred to as _printing_.
+As mentioned above, this library is built using the [Parsing](https://github.com/pointfreeco/swift-parsing) library, which is a library that provides a consistent story for writing _parsing_ code in Swift, that is, code that turns some _unstructured data_ into more _structured data_. You do that by constructing _parsers_ that are generic over both the (unstructured) _input_ and the (structued) _output_. What's really great is the fact the these parsers can be made _invertible_ (or bidirectional), meaning they can also turn structured data _back_ into unstructured data, referred to as _printing_.
 
 The *JSONParsing* library provides predefined parsers tuned specifically for when the _input is json_, giving you a convenient way of writing parsers capable of parsing (decoding) and printing (encoding) json. This style of dealing with json has a number of benefits compared to the *Codable* abstraction. More about that in the [Motivation](#motivation---why-not-use-codable) section.
 
@@ -145,7 +145,7 @@ Or perhaps:
 "205,99,138"
 ```
 
-The truth is, both representations are reasonable (as well as many other possibilities), and it's possible that you might have one API endpoint returning RGB colors in the first format, and another in the second format. But when using Codable, you would have to choose one of the formats to be the one used for the `RGBColor` type. To handle both variants, you would have to define two separate types, something like `RGBColorWithObjectRepresentaion` and `RGBColorWithStringRepresentation`, and conform both of them to `Codable`, with the different decoding/encoding strategies.
+The truth is, both representations are reasonable (as well as many other possibilities), and it's possible that you might have one API endpoint returning RGB colors in the first format, and another in the second format. But when using Codable, you would have to choose one of the formats to be the one used for the `RGBColor` type. To handle both variants, you would have to define two separate types, something like `RGBColorWithObjectRepresentation` and `RGBColorWithStringRepresentation`, and conform both of them to `Codable`, with the different decoding/encoding strategies.
 
 Using the *JSONParsing* library, you can easily just create two separate parsers, one for each alternative:
 
@@ -284,7 +284,7 @@ print(String(data: encodedJson, encoding: .utf8)!)
 
 ### Decoding and encoding logic out of sync
 
-Codable has the really cool feature of being able to automatically sythesize the decoding and encoding implementations for Swift types, thanks to integration with the Swift compiler. Unfortunately, in practice, the automatically synthesized implementations will often not be correct for your usecase, because it assumes that your json data and your Swift data types _exactly_ match each other in structure. This will often not be the case, for various reasons. First, you might be dealing with JSON APIs that you don't own yourself and therefore might deliver data in a format that isn't ideal to your usecase. But even if you do own the API code, it might be used by multiple platforms, which means you can't tailor it specifically to work perfectly with your Swift code. Also, Swift has some features, such as enums, that simply _can't_ be expressed equivalently in json.
+Codable has the really cool feature of being able to automatically synthesize the decoding and encoding implementations for Swift types, thanks to integration with the Swift compiler. Unfortunately, in practice, the automatically synthesized implementations will often not be correct for your use case, because it assumes that your json data and your Swift data types _exactly_ match each other in structure. This will often not be the case, for various reasons. First, you might be dealing with JSON APIs that you don't own yourself and therefore might deliver data in a format that isn't ideal to your use case. But even if you do own the API code, it might be used by multiple platforms, which means you can't tailor it specifically to work perfectly with your Swift code. Also, Swift has some features, such as enums, that simply _can't_ be expressed equivalently in json.
 
 So in practice, when using Codable, you will often have to implement the decoding and encoding logic manually. And the problem in that situation, is that they have to be implemented _separately_. This means that, whenever the expected json format changes in any way, you have to remember to update both the `init(from:)` (decoding) and the `encode(to:)` (encoding) implementations accordingly.
 
@@ -292,7 +292,7 @@ With *JSONParsing* on the other hand, you can write a single json parser that ca
 
 ### Custom String parsing
 
-Recall how we previously defined a json parser for the `RGBColor` type, where the json representation was a comma seperated string. It looked like this:
+Recall how we previously defined a json parser for the `RGBColor` type, where the json representation was a comma separated string. It looked like this:
 
 ```swift
 extension RGBColor {
@@ -539,7 +539,7 @@ public enum JSONValue: Equatable {
 
 So when we call the `decode(_:)` and `encode(_:)` methods on the parsers, the decoding and encoding happens in two steps: the json data is transformed to/from the `JSONValue` type, and the `JSONValue` type is in turn transformed to/from the result type using the `Parser.parse`/`ParserPrinter.print` methods.
 
-The primary usecase for the `JSONValue` type is just to act as this middle layer, to simplify the implementations of the various json parsers that ship with the library. However, it can actually be useful on its own. For instance, you might have code like this today:
+The primary use case for the `JSONValue` type is just to act as this middle layer, to simplify the implementations of the various json parsers that ship with the library. However, it can actually be useful on its own. For instance, you might have code like this today:
 
 ```swift
 let json: [String: Any] = [
@@ -591,7 +591,7 @@ let json: [String: Any] = [
 
 This library ships with a number of json parsers, that can be composed together to deal with more complex json structures. As mentioned in the previous section, they all take values of the custom type `JSONValue` as input, so when using the `parse`/`print` methods, they convert to/from that type.
 
-When you want to use them to decode/encode json _data_ (which is likely to be the most common usecase) you just use the `decode`/`encode` methods defined on them instead, which does the converting to from data for you.
+When you want to use them to decode/encode json _data_ (which is likely to be the most common use case) you just use the `decode`/`encode` methods defined on them instead, which does the converting to from data for you.
 
 ### Null
 
@@ -1061,7 +1061,7 @@ try Person.jsonParser.print(person2)
 // .object(["first_name": "Mark", "last_name": "Markson", "age": 20])
 ```
 
-Instead of treating an abscent value as `nil`, you can optionally provide a `default` value, to use as a fallback:
+Instead of treating an absent value as `nil`, you can optionally provide a `default` value, to use as a fallback:
 
 ```diff
 struct Person {
@@ -1141,7 +1141,7 @@ extension Person {
 
 ### Integrating *JSONParsing* into *Codable* code
 
-So that's one part of the equation, when it comes to integration with Codable. But what about the other way around? What if we actually _do_ have a json parser capable of decoding `Movie`s, and we're using Codable for the `Person` type instead. For that usecase, the library comes with overloads of the various methods on the decoding/encoding containers, that take a json parser as input. Let's see what it looks like to use this, by conforming the `Person` type to both the `Decodable` and the `Encodable` protocol:
+So that's one part of the equation, when it comes to integration with Codable. But what about the other way around? What if we actually _do_ have a json parser capable of decoding `Movie`s, and we're using Codable for the `Person` type instead. For that use case, the library comes with overloads of the various methods on the decoding/encoding containers, that take a json parser as input. Let's see what it looks like to use this, by conforming the `Person` type to both the `Decodable` and the `Encodable` protocol:
 
 ```swift
 extension Person: Decodable {

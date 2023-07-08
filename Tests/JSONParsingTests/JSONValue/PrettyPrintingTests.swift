@@ -21,7 +21,7 @@ final class PrettyPrintingTests: XCTestCase {
     XCTAssertEqual(json.prettyPrinted(maxDepth: 0), "{ \"a\": true }")
   }
 
-  func testMaxSubvalueCount0() {
+  func testMaxSubValueCount0() {
     let json = JSONValue.object([
       "key1": .boolean(true),
       "key2": .string("hello"),
