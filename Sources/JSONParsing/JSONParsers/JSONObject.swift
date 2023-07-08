@@ -56,7 +56,7 @@ where Key.Input == Substring, Key.Output: Hashable, Value.Input == JSONValue {
   /// Initialize a parser that tries to parse a json value as an object, and turn it into a Swift `Dictionary` value.
   ///
   /// You can provide an optional `range` to limit the number of key/value pair that are accepted,
-  /// as well as indvidual parsers to be used for the _keys_ and the _values_ respectively.
+  /// as well as individual parsers to be used for the _keys_ and the _values_ respectively.
   ///
   /// For example, image that you want to parse a json that looks something like this:
   ///

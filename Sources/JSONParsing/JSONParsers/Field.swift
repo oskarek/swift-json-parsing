@@ -1,7 +1,7 @@
 import Foundation
 import Parsing
 
-/// A parser that tries to parse off a single field from a json object. The parser, if succesful, will remove the field from the input json,
+/// A parser that tries to parse off a single field from a json object. The parser, if successful, will remove the field from the input json,
 /// so that it can then be further parsed by other parsers.
 ///
 /// For example, here's how to work with a json value that encodes a person. First, let's see how a single `Field` parser
@@ -84,7 +84,7 @@ public struct Field<Value: Parser>: Parser where Value.Input == JSONValue {
   /// The parser to apply to the value of the field.
   public let valueParser: Value
 
-  /// Initializes a parser that tries to parse off a single field from a json object. The parser, if succesful, will remove the field from
+  /// Initializes a parser that tries to parse off a single field from a json object. The parser, if successful, will remove the field from
   /// the input json, so that it can then be further parsed by other parsers.
   ///
   /// Here's how it can be used to parse the individual fields of a json representing a `Person`:
