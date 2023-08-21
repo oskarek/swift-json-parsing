@@ -1215,7 +1215,7 @@ You can add the library as a dependency using SPM by adding the following to the
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/oskarek/swift-json-parsing", from: "0.1.0"),
+  .package(url: "https://github.com/oskarek/swift-json-parsing", from: "0.2.0"),
 ]
 ```
 
