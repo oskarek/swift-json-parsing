@@ -60,7 +60,7 @@ final class DecodableJSONParserTests: XCTestCase {
         "\(error)",
         """
         At [index 1]/"hobbies"/[index 0]:
-        (DecodingError) - Expected String but found null value instead.
+        (DecodingError) - Cannot get value of type String -- found null value instead
         """
       )
     }
