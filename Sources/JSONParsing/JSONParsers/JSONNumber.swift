@@ -107,7 +107,7 @@ extension JSONNumber where Num: BinaryFloatingPoint {
       type: .float(
         fromDouble: { Num($0) },
         toDouble: { Double($0) },
-        fromInt: allowInteger ? Num.init : nil
+        fromInt: allowInteger ? { Num($0) } : nil
       )
     )
   }

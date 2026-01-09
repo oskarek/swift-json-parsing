@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.2
 
 import PackageDescription
 
@@ -17,7 +17,7 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-parsing", from: "0.13.0"),
+    .package(url: "https://github.com/pointfreeco/swift-parsing", from: "0.14.1"),
     .package(url: "https://github.com/google/swift-benchmark", from: "0.1.2"),
   ],
   targets: [
