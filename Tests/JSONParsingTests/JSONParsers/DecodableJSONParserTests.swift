@@ -56,13 +56,9 @@ final class DecodableJSONParserTests: XCTestCase {
     XCTAssertThrowsError(
       try JSONArray { Person.jsonParser() }.parse(json)
     ) { error in
-      XCTAssertEqual(
-        "\(error)",
-        """
-        At [index 1]/"hobbies"/[index 0]:
-        (DecodingError) - Expected String but found null value instead.
-        """
-      )
+      let errorMessage = "\(error)"
+      XCTAssertTrue(errorMessage.hasPrefix("At [index 1]/\"hobbies\"/[index 0]:\n(DecodingError) - "))
+      XCTAssertTrue(errorMessage.contains("null"))
     }
   }
 

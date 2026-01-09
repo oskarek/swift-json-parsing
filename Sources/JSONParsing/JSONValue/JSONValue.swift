@@ -1,7 +1,7 @@
 import Foundation
 
 /// A typed representation of a JSON value.
-public enum JSONValue: Equatable {
+public enum JSONValue: Equatable, Hashable, Sendable {
   case null
   case boolean(Bool)
   case integer(Int)

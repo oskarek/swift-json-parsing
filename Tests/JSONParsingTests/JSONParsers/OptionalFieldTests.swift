@@ -117,7 +117,9 @@ final class OptionalFieldTests: XCTestCase {
     struct MyType {
       let value: Int
 
-      static let jsonParser = Int.jsonParser().map(.memberwise(Self.init))
+      static var jsonParser: some JSONParserPrinter<Self> {
+        Int.jsonParser().map(.memberwise(Self.init))
+      }
     }
 
     var input = JSONValue.object([:])
